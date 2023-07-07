@@ -6,6 +6,14 @@ export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
+	const { actions, store } = useContext(Context);
+	const handleDelete = e => {
+		e.preventDefault();
+		actions.deleteContact(props.id);
+		props.onClose;
+	};
+
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">

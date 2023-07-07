@@ -27,19 +27,19 @@ export const Contacts = () => {
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
 						{store.contacts.map(el => (
-							<ContactCard // Mapeo del contacts en el store metiendole el para los elementos
+							<ContactCard // Mapeo del contacts en el store metiendole "el" para los elementos
 								full_name={el.full_name}
 								phone={el.phone}
 								address={el.address}
 								email={el.email}
 								key={el.id}
-								onDelete={() => setState({ showModal: true })}
+								onDelete={() => setState({ showModal: true, id: el.id })}
 							/>
 						))}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

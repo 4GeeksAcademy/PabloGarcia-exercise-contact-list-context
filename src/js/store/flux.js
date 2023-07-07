@@ -47,7 +47,7 @@ const getState = ({ getStore, setStore }) => {
 					body: JSON.stringify({
 						full_name: full_name,
 						email: email,
-						agenda_slug: "bertablancpastoragenda",
+						agenda_slug: "agenda_pablogarcia",
 						address: address,
 						phone: phone
 					}) // body data type must match "Content-Type" header
@@ -63,7 +63,14 @@ const getState = ({ getStore, setStore }) => {
 				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
 					method: "DELETE"
 				})
-					.then(response => response.json())
+					.then(response => {
+						console.log(response.ok);
+
+						if (response.ok == true){
+							getActions().getContacts();
+						}
+						return response.json();
+						})
 					.then(data => console.log(data))
 					.catch(error => console.log(error));
 			}
